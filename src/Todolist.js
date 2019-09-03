@@ -8,27 +8,28 @@ class Todolist extends React.Component{
        this.state = {
            inputValue: '',
            list:[
-               'hello',
-               'hah'
            ]
        }
     }
     handleChange=(e)=>{
-        this.setState({
-            inputValue: e.target.value
-        })
+        const value = e.target.value
+        this.setState(()=>({
+            inputValue: value
+        }));
     }
     handleClick=()=>{
-        this.setState({
-            list: [...this.state.list, this.state.inputValue],
+        this.setState((prevState)=>({
+            list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        })
+        }));
     }
     delectItem=(index)=>{
-        let list = [...this.state.list]
-        list.splice(index,1)
-        this.setState({
-            list: list
+        this.setState((prevState)=>{
+            let list = [...prevState.list]
+            list.splice(index,1)
+            return {
+                list
+            }
         })
     }
     // 逻辑拆分
