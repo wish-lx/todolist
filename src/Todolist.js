@@ -48,7 +48,9 @@ class Todolist extends React.Component{
                        this.state.list.map((item, index) => {
                            return (
                                <div>
-                                 <TodoItem content = {item}></TodoItem>
+                                 <TodoItem content = {item} index={index}
+                                 delectItem = {this.delectItem}
+                                 ></TodoItem>
                                     {/* <li key={index} onClick={this.delectItem.bind(this, index)}
                                     dangerouslySetInnerHTML={{__html: item}}
                                     ></li> */}
