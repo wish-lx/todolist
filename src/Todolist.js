@@ -37,7 +37,7 @@ class Todolist extends React.Component{
         return (
             this.state.list.map((item, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                       <TodoItem content = {item} index={index}
                       delectItem = {this.delectItem}
                       ></TodoItem>
