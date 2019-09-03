@@ -7,10 +7,10 @@ class TodoItem extends React.Component{
         this.delectItem = this.delectItem.bind(this)
     }
     render(){
-        const {content} = this.props
+        const {content, text} = this.props
         return(
             <div onClick={this.delectItem}>
-                {content}
+               {text}- {content}
             </div>
         )
     }
@@ -22,8 +22,12 @@ class TodoItem extends React.Component{
 		
 }
 TodoItem.propTypes = {
+	text: PropTypes.string.isRequired,
 	content: PropTypes.string,
 	delectItem: PropTypes.func,
 	index: PropTypes.number
+}
+TodoItem.defaultProps = {
+   text: 'hello'
 }
 export default TodoItem 
