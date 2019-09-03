@@ -9,6 +9,8 @@ class TodoItem extends React.Component{
     render(){
         const {content, text} = this.props
         return(
+					// jsx->reactElement->js对象(虚拟dom)-> 真实dom
+					// React.reactElement['div',{id:'abc'},item]
             <div onClick={this.delectItem}>
                {text}- {content}
             </div>
