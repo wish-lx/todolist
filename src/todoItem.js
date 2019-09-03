@@ -15,6 +15,6 @@ class TodoItem extends React.Component{
     delectItem(){
         this.props.delectItem(this.props.index)
         // console.log(this.props.index)
-    }
+    } 
 }
-export default TodoItem
+export default TodoItem 
