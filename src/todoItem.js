@@ -6,14 +6,16 @@ class TodoItem extends React.Component{
         this.delectItem = this.delectItem.bind(this)
     }
     render(){
+        const {content} = this.props
         return(
             <div onClick={this.delectItem}>
-                {this.props.content}
+                {content}
             </div>
         )
     }
     delectItem(){
-        this.props.delectItem(this.props.index)
+        const {delectItem, index} = this.props
+        delectItem(index)
         // console.log(this.props.index)
     } 
 }

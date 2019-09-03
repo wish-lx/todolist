@@ -31,6 +31,22 @@ class Todolist extends React.Component{
             list: list
         })
     }
+    // 逻辑拆分
+    gettodoItem(){
+        return (
+            this.state.list.map((item, index) => {
+                return (
+                    <div>
+                      <TodoItem content = {item} index={index}
+                      delectItem = {this.delectItem}
+                      ></TodoItem>
+                         
+                    </div>
+                )
+               
+            })
+        )
+    }
     render(){
         return(
             <Fragment>
@@ -45,19 +61,7 @@ class Todolist extends React.Component{
                 </div>
                 <ul >
                    {
-                       this.state.list.map((item, index) => {
-                           return (
-                               <div>
-                                 <TodoItem content = {item} index={index}
-                                 delectItem = {this.delectItem}
-                                 ></TodoItem>
-                                    {/* <li key={index} onClick={this.delectItem.bind(this, index)}
-                                    dangerouslySetInnerHTML={{__html: item}}
-                                    ></li> */}
-                               </div>
-                           )
-                          
-                       })
+                      this.gettodoItem()
                    }
                 </ul>
             </Fragment>
