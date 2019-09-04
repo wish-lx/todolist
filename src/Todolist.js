@@ -2,8 +2,7 @@ import React from 'react'
 import 'antd/dist/antd.css';
 import { Input , Button, List} from 'antd';
 import store from './store'
-import {INPUT_CHANGE, COMMIT_VALUE, DELECT_ITEM} from './store/actionTypes'
-
+import {getInputChange, getCommitChange, getdelecteChange} from './store/actionCreations'
 class Todolist extends React.Component{
     constructor(props){
       super(props)
@@ -35,29 +34,23 @@ class Todolist extends React.Component{
    }
    inputChange(e){
     //    创建一个action
-       const action ={
-           type: INPUT_CHANGE,
-           inputValue: e.target.value
-       }
+       const action = getInputChange(e.target.value)
     //    派发action
       store.dispatch(action)
    }
-   handleInput=()=>{
-       this.setState(store.getState())
-
-   }
+   
    commitInput=()=>{
-       const action = {
-           type: COMMIT_VALUE,
-       }
+       const action = getCommitChange()
        store.dispatch(action)
    }
    delectItem(index) {
-       const action = {
-           type: DELECT_ITEM,
-           index: index
-       }
+       const action = getdelecteChange(index)
        store.dispatch(action)
    }
+
+   handleInput=()=>{
+    this.setState(store.getState())
+
+}
 }
 export default Todolist
