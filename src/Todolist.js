@@ -1,23 +1,23 @@
 import React from 'react'
 import 'antd/dist/antd.css';
 import { Input , Button, List} from 'antd';
+import store from './store'
 
-const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-  ];
+
 class Todolist extends React.Component{
+    constructor(props){
+      super(props)
+      this.state = store.getState()
+      console.log(this.state)
+    }
    render(){
        return(
           <div style={{marginLeft:30, marginTop: 30}}>
-              <Input placeholder="todo info"  style={{width: 300, marginRight: 10}}/>
+              <Input value={this.state.inputValue} placeholder="todo info"  style={{width: 300, marginRight: 10}}/>
               <Button type="primary">Primary</Button>
               <List style={{width:300,marginTop:10}}
                 bordered
-                dataSource={data}
+                dataSource={this.state.list}
                 renderItem={item => (
                     <List.Item> {item}</List.Item>
                 )}
