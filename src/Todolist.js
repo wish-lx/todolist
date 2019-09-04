@@ -26,8 +26,8 @@ class Todolist extends React.Component{
               <List style={{width:300,marginTop:10}}
                 bordered
                 dataSource={this.state.list}
-                renderItem={item => (
-                    <List.Item> {item}</List.Item>
+                renderItem={(item,index) => (
+                    <List.Item onClick={this.delectItem.bind(this,index)}> {item}</List.Item>
                 )}
                 />
           </div>
@@ -49,6 +49,13 @@ class Todolist extends React.Component{
    commitInput=()=>{
        const action = {
            type: 'COMMIT_VALUE',
+       }
+       store.dispatch(action)
+   }
+   delectItem(index) {
+       const action = {
+           type: 'DELECT_ITEM',
+           index: index
        }
        store.dispatch(action)
    }
