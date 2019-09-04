@@ -1,84 +1,29 @@
-import React,{Fragment} from 'react'
-import TodoItem from './todoItem'
-import axios from 'axios'
-import './style.css'
+import React from 'react'
+import 'antd/dist/antd.css';
+import { Input , Button, List} from 'antd';
+
+const data = [
+    'Racing car sprays burning fuel into crowd.',
+    'Japanese princess to wed commoner.',
+    'Australian walks 100km after outback crash.',
+    'Man charged over missing wedding girl.',
+    'Los Angeles battles huge wildfires.',
+  ];
 class Todolist extends React.Component{
-
-    constructor(props){
-       super(props)
-       this.state = {
-           inputValue: '',
-           list:[
-           ]
-       }
-    }
-    handleChange=(e)=>{
-        const value = e.target.value
-        this.setState(()=>({
-            inputValue: value
-        }));
-    }
-    handleClick=()=>{
-        this.setState((prevState)=>({
-            list: [...prevState.list, prevState.inputValue],
-            inputValue: ''
-        }));
-    }
-    delectItem=(index)=>{
-        this.setState((prevState)=>{
-            let list = [...prevState.list]
-            list.splice(index,1)
-            return {
-                list
-            }
-        })
-    }
-    // 逻辑拆分
-    gettodoItem(){
-        return (
-            this.state.list.map((item, index) => {
-                return (
-                    <div key={index}>
-                      <TodoItem content = {item} index={index}
-                      delectItem = {this.delectItem}
-                      ></TodoItem>
-                         
-                    </div>
-                )
-               
-            })
-        )
-    }
-    render(){
-        return(
-            <Fragment>
-                <div>
-                    {/* 注释的添加 */}
-                    <label htmlFor="inserArea">请输入</label>
-                    <input id='inserArea' className='input'
-                    value={this.state.inputValue}
-                    onChange = {this.handleChange}
-                    />
-                    <button onClick = {this.handleClick}>提交</button>
-                </div>
-                <ul >
-                   {
-                      this.gettodoItem()
-                   }
-                </ul>
-            </Fragment>
-        )
-    }
-    componentDidMount(){
-        // 在这个生命周期函数中发送ajax请求
-        axios.get(api/todolist)
-        .then(res => 
-            this.setState(()=>({
-                list: [...res.data]
-            }))
-            )
-        .catch(err => console.log(err))
-    }
+   render(){
+       return(
+          <div style={{marginLeft:30, marginTop: 30}}>
+              <Input placeholder="todo info"  style={{width: 300, marginRight: 10}}/>
+              <Button type="primary">Primary</Button>
+              <List style={{width:300,marginTop:10}}
+                bordered
+                dataSource={data}
+                renderItem={item => (
+                    <List.Item> {item}</List.Item>
+                )}
+                />
+          </div>
+       )
+   }
 }
-
 export default Todolist
