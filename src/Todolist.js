@@ -2,7 +2,7 @@ import React from 'react'
 import 'antd/dist/antd.css';
 import { Input , Button, List} from 'antd';
 import store from './store'
-
+import {INPUT_CHANGE, COMMIT_VALUE, DELECT_ITEM} from './store/actionTypes'
 
 class Todolist extends React.Component{
     constructor(props){
@@ -36,7 +36,7 @@ class Todolist extends React.Component{
    inputChange(e){
     //    创建一个action
        const action ={
-           type: 'INPUT_CHANGE',
+           type: INPUT_CHANGE,
            inputValue: e.target.value
        }
     //    派发action
@@ -48,13 +48,13 @@ class Todolist extends React.Component{
    }
    commitInput=()=>{
        const action = {
-           type: 'COMMIT_VALUE',
+           type: COMMIT_VALUE,
        }
        store.dispatch(action)
    }
    delectItem(index) {
        const action = {
-           type: 'DELECT_ITEM',
+           type: DELECT_ITEM,
            index: index
        }
        store.dispatch(action)
