@@ -22,7 +22,7 @@ class Todolist extends React.Component{
               style={{width: 300, marginRight: 10}}
                onChange = {this.inputChange}
               />
-              <Button type="primary">Primary</Button>
+              <Button type="primary" onClick={this.commitInput}>Primary</Button>
               <List style={{width:300,marginTop:10}}
                 bordered
                 dataSource={this.state.list}
@@ -44,8 +44,13 @@ class Todolist extends React.Component{
    }
    handleInput=()=>{
        this.setState(store.getState())
-       console.log('store changed')
 
+   }
+   commitInput=()=>{
+       const action = {
+           type: 'COMMIT_VALUE',
+       }
+       store.dispatch(action)
    }
 }
 export default Todolist
