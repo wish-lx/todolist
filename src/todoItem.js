@@ -5,14 +5,21 @@ class TodoItem extends React.Component{
     constructor(props){
         super(props)
         this.delectItem = this.delectItem.bind(this)
-    }
+		}
+		shouldComponentUpdate(nextProps, nextState){
+        if(nextProps.content !== this.props.content){
+					return true
+				} else {
+					return false
+				}
+		}
     render(){
-        const {content, text} = this.props
+        const {content} = this.props
         return(
 					// jsx->reactElement->js对象(虚拟dom)-> 真实dom
 					// React.reactElement['div',{id:'abc'},item]
             <div onClick={this.delectItem}>
-               {text}- {content}
+               {content}
             </div>
         )
     }
@@ -24,12 +31,9 @@ class TodoItem extends React.Component{
 		
 }
 TodoItem.propTypes = {
-	text: PropTypes.string.isRequired,
-	content: PropTypes.oneofType([PropTypes.number, PropTypes.string]),
+	content: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	delectItem: PropTypes.func,
 	index: PropTypes.number
 }
-TodoItem.defaultProps = {
-   text: 'hello'
-}
+
 export default TodoItem 

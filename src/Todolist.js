@@ -1,5 +1,6 @@
 import React,{Fragment} from 'react'
 import TodoItem from './todoItem'
+import axios from 'axios'
 import './style.css'
 class Todolist extends React.Component{
 
@@ -67,6 +68,16 @@ class Todolist extends React.Component{
                 </ul>
             </Fragment>
         )
+    }
+    componentDidMount(){
+        // 在这个生命周期函数中发送ajax请求
+        axios.get(api/todolist)
+        .then(res => 
+            this.setState(()=>({
+                list: [...res.data]
+            }))
+            )
+        .catch(err => console.log(err))
     }
 }
 
