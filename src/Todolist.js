@@ -1,8 +1,7 @@
 import React from 'react'
-import 'antd/dist/antd.css';
-import { Input , Button, List} from 'antd';
 import store from './store'
 import {getInputChange, getCommitChange, getdelecteChange} from './store/actionCreations'
+import TodolistUI from './todoIistUI'
 class Todolist extends React.Component{
     constructor(props){
       super(props)
@@ -16,20 +15,14 @@ class Todolist extends React.Component{
     }
    render(){
        return(
-          <div style={{marginLeft:30, marginTop: 30}}>
-              <Input value={this.state.inputValue}   
-              style={{width: 300, marginRight: 10}}
-               onChange = {this.inputChange}
-              />
-              <Button type="primary" onClick={this.commitInput}>Primary</Button>
-              <List style={{width:300,marginTop:10}}
-                bordered
-                dataSource={this.state.list}
-                renderItem={(item,index) => (
-                    <List.Item onClick={this.delectItem.bind(this,index)}> {item}</List.Item>
-                )}
-                />
-          </div>
+        
+        <TodolistUI 
+        inputValue = {this.state.inputValue}
+        inputChange = {this.inputChange}
+        commitInput = {this.commitInput}
+        list = {this.state.list}
+        delectItem = {this.delectItem}
+         ></TodolistUI>
        )
    }
    inputChange(e){
