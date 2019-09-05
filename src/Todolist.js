@@ -1,8 +1,7 @@
 import React from 'react'
 import store from './store'
-import {getInputChange, getCommitChange, getdelecteChange, getinitMessage} from './store/actionCreations'
+import {getInputChange, getCommitChange, getdelecteChange, getinitMessageFun} from './store/actionCreations'
 import TodolistUI from './todoIistUI'
-import axios from 'axios'
 class Todolist extends React.Component{
     constructor(props){
       super(props)
@@ -26,6 +25,10 @@ class Todolist extends React.Component{
          ></TodolistUI>
        )
    }
+   handleInput=()=>{
+    this.setState(store.getState())
+  
+  }
    inputChange(e){
     //    创建一个action
        const action = getInputChange(e.target.value)
@@ -42,16 +45,9 @@ class Todolist extends React.Component{
        store.dispatch(action)
    }
    componentDidMount(){
-       axios.get(/public/list.json).then((res)=>({
-         const data = res.data
-         const action = getinitMessage(data)
-         store.dispatch(action)
-       }))
+       const action = getinitMessageFun()
+       store.dispatch(action)
    }
-
-   handleInput=()=>{
-    this.setState(store.getState())
-
-}
+  
 }
 export default Todolist
