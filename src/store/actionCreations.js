@@ -1,5 +1,5 @@
 import {INPUT_CHANGE, COMMIT_VALUE, DELECT_ITEM, INIT_MESSAGE} from './actionTypes'
-import axios from 'axios'
+// import axios from 'axios'
 
 export const getInputChange = (val)=>({
     type: INPUT_CHANGE,
@@ -18,13 +18,13 @@ export const getinitMessage = (data)=>({
 })
 
 // 原始actionCreator返回的是一个对象，使用redux-thunk之后可以返回一个函数了
-
-export const getinitMessageFun = () => {
-    return (dispatch)=>{
-        axios.get('api/detail.json').then((res)=>{
-            const data = res
-            const action = getinitMessage(data)
-            dispatch(action)
-          })
-    }
-}
+// 使用redux-thunk
+// export const getinitMessageFun = () => {
+//     return (dispatch)=>{
+//         axios.get('api/detail.json').then((res)=>{
+//             const data = res
+//             const action = getinitMessage(data)
+//             dispatch(action)
+//           })
+//     }
+// }
