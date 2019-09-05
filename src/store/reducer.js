@@ -1,4 +1,4 @@
-import {INPUT_CHANGE, COMMIT_VALUE, DELECT_ITEM} from './actionTypes'
+import {INPUT_CHANGE, COMMIT_VALUE, DELECT_ITEM, INIT_MESSAGE} from './actionTypes'
 
 const defaultState = {
     inputValue: '',
@@ -20,6 +20,11 @@ export default (state = defaultState, action)=>{
     if(action.type === DELECT_ITEM){
         const newState = JSON.parse(JSON.stringify(state))
         newState.list.splice(action.index, 1)
+        return newState
+    }
+    if(action.type === INIT_MESSAGE){
+        const newState = JSON.parse(JSON.stringify(state))
+        newState.list = action.data
         return newState
     }
    return state
